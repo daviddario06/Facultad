@@ -6,6 +6,13 @@ public class Pelicula {
 	private int cronologico;
 	private String estado;
 	
+	public Pelicula (String nombre){
+		this.nombre = nombre;
+		this.emision = 0;
+		this.cronologico = 0;
+		this.estado = "";
+	}
+	
 	public int getEmision() {
 		return emision;
 	}

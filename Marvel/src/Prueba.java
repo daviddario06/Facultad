@@ -13,7 +13,7 @@ public class Prueba {
 		ResultSet rs = null;
 		try {
 			
-			conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Marvel", "postgres", "postgre");
+			conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Marvel", "postgres", "postgres");
 		
 			miStatement = conexion.createStatement();
 			
