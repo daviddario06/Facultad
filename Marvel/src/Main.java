@@ -52,7 +52,7 @@ public class Main extends HttpServlet  {
 			
 			while (rs.next()) {
 				String nombre_peli = rs.getString(2);
-				salida.append(nombre_peli);
+				salida.println(nombre_peli);
 				System.out.println(nombre_peli);
 			}
 			rs.close();
