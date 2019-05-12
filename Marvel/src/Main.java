@@ -7,11 +7,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 /**
  * Servlet implementation class Main
@@ -20,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 public class Main extends HttpServlet  {
 	private static final long serialVersionUID = 1L;
 
-	/*@Resource(name = "jdbc/Marvel")
-	private DataSource miPool;*/
+	@Resource(name = "jdbc/Marvel")
+	private DataSource miPool;
 	
 	
   
@@ -31,19 +33,27 @@ public class Main extends HttpServlet  {
 		PrintWriter salida = response.getWriter();
 		
 		response.setContentType("text/plain");
-		
+		Connection conexion = null;
+		Statement miStatement = null;
+		ResultSet rs = null;
 		
 		try {
 			Class.forName("org.postgresql.Driver"); 
-			Connection conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Marvel", "postgres", "postgre");
-			//String consultaSql = "SELECT *FROM PELICULAS";
+			 //conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Marvel", "postgres", "postgre");
 			
-			Statement miStatement = conexion.createStatement();
-			ResultSet rs = miStatement.executeQuery("SELECT * FROM PELICULAS");
+			
+			
+			
+			conexion = miPool.getConnection();
+			miStatement = conexion.createStatement();
+			String consultaSql = "SELECT *FROM PELICULAS";
+			rs = miStatement.executeQuery(consultaSql);
+			
 			
 			while (rs.next()) {
 				String nombre_peli = rs.getString(2);
 				salida.append(nombre_peli);
+				System.out.println(nombre_peli);
 			}
 			rs.close();
 			miStatement.close();

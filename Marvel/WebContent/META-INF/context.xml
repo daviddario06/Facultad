@@ -1,6 +1,6 @@
 <Context>
 	
-	<Resource name = "jdbc/Marvel" auth = "Container" type = "java.sql.DataSource"
+	<Resource name = "jdbc/Marvel" auth = "Container" type = "javax.sql.DataSource"
 		maxActive = "15" maxIdle = "3" maxWait = "5000"
 		username = "postgres" password = "postgre"
 		driverClassName = "org.postgresql.Driver"
