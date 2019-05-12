@@ -1,11 +1,12 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Prueba {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
 
 		Connection conexion = null;
@@ -23,13 +24,14 @@ public class Prueba {
 				
 				System.out.println(rs.getString("NOMBRE"));
 			}
-			miStatement.close();
-			conexion.close();
-			rs.close();
+			
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally{
-	
+			rs.close();
+			miStatement.close();
+			conexion.close();
 		}
 	}
 
